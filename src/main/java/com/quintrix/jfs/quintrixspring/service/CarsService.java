@@ -1,46 +1,14 @@
 package com.quintrix.jfs.quintrixspring.service;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import com.quintrix.jfs.quintrixspring.models.Car;
-import com.quintrix.jfs.quintrixspring.repository.CarRepository;
+import com.quintrix.jfs.quintrixspring.models.GetCarsResponse;
 
-@Service
-public class CarsService {
+public interface CarsService {
 
-  @Autowired
-  CarRepository carRepository;
+  Car getCarsDetailsByID(Long id);
 
-  List<Car> carsList = new ArrayList<>(Arrays.asList((new Car(1L, "Ford", "SUV", 2011)),
-      (new Car(2L, "Honda", "SUV", 2005)), (new Car(3L, "Subaru", "Truck", 2015))));
+  GetCarsResponse getCars(String make);
 
-  public List<Car> getCars(String make) {
-    if (make != null) {
-      return carsList.stream().filter(c -> c.getMake().equals(make)).collect(Collectors.toList());
-    } else {
-      return carsList;
-    }
-  }
-
-  public Car getCarsDetailsByID(Long id) {
-    Optional<Car> car = carRepository.findById(1L);
-
-    if (car.isPresent()) {
-      return car.get();
-    } else {
-      return new Car();
-    }
-  }
-
-  public Car addCar(Car car) {
-    Car createdCar = carRepository.save(car);
-
-    return createdCar;
-  }
+  Car addCar(Car car);
 
 }

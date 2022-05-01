@@ -1,6 +1,5 @@
 package com.quintrix.jfs.quintrixspring.controller;
 
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -9,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.quintrix.jfs.quintrixspring.models.Car;
+import com.quintrix.jfs.quintrixspring.models.GetCarsResponse;
 import com.quintrix.jfs.quintrixspring.service.CarsService;
 
 @RestController
@@ -19,7 +19,7 @@ public class CarController {
 
   // Return car with matching make parameter
   @RequestMapping(method = RequestMethod.GET, value = "/cars")
-  List<Car> getCars(@RequestParam(name = "make", required = false) String make) {
+  GetCarsResponse getCars(@RequestParam(name = "make", required = false) String make) {
 
     return carsService.getCars(make);
   }
