@@ -1,13 +1,28 @@
 package com.quintrix.jfs.quintrixspring;
 
+import java.util.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import com.quintrix.jfs.quintrixspring.entity.City;
+import com.quintrix.jfs.quintrixspring.repository.CityRepository;
 
 @SpringBootApplication
-public class QuintrixSpringApplication {
+public class QuintrixSpringApplication implements CommandLineRunner {
 
-	public static void main(String[] args) {
-		SpringApplication.run(QuintrixSpringApplication.class, args);
-	}
+  @Autowired
+  CityRepository cityRepository;
+
+  public static void main(String[] args) {
+    SpringApplication.run(QuintrixSpringApplication.class, args);
+  }
+
+  @Override
+  public void run(String... args) throws Exception {
+    Long countOfRecords = cityRepository.count();
+    System.out.println(countOfRecords);
+    Optional<City> city = cityRepository.findById(1);
+  }
 
 }
