@@ -1,5 +1,7 @@
 package com.quintrix.jfs.quintrixspring.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,6 +15,8 @@ import com.quintrix.jfs.quintrixspring.service.CarsService;
 
 @RestController
 public class CarController {
+
+  private static final Logger logger = LoggerFactory.getLogger(CarController.class);
 
   @Autowired
   CarsService carsService;
@@ -28,6 +32,7 @@ public class CarController {
   @RequestMapping(method = RequestMethod.GET, value = "/cars/{id}")
   Car getCarDetails(@PathVariable("id") Long id) {
 
+    logger.debug("Request: Called getCarDetails controller with id - {}", id);
     return carsService.getCarsDetailsByID(id);
   }
 
