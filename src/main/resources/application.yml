@@ -11,3 +11,15 @@ spring:
     username: root
     password: Blackocean12!
     driver-class-name: com.mysql.cj.jdbc.Driver
+    
+agentService:
+    getUrl: https://gorest.co.in/public/v2/users
+    
+logging:
+    level:
+        org.springframework: ERROR
+        com.quintrix: DEBUG
+    pattern:
+        console: " %-5level %logger{36} - %msg%n"
+        file: "%d %p %c{1.} [%t] %m%n"
+    file: app.log
